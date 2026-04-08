@@ -1,0 +1,33 @@
+# Sensitive credentials - NEVER commit
+google-calendar-credentials.json
+*.json.bak
+.env
+.env.local
+credentials/
+secrets/
+
+# Cache and temp
+.cache/
+*.pyc
+__pycache__/
+*.egg-info/
+.DS_Store
+
+# Virtual environments
+calendar-env/
+venv/
+env/
+
+# Local logs
+*.log
+.openclaw/logs/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
