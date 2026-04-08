@@ -5,6 +5,7 @@ Sopialis is an OpenClaw-based personal assistant configured to manage calendars 
 ## Features
 
 - 📅 **Google Calendar Sync** — Automated daily agenda checks from multiple calendars (pro + personal)
+- 📇 **Google Contacts Manager** — Create and update contacts (synced to iPhone via Google)
 - 🔍 **Daily Search Monitoring** — Configurable automated web searches
 - 💬 **Telegram Integration** — Direct notifications and agenda reminders
 - 🔐 **Secure Service Account Auth** — OAuth via Google service accounts (no passwords needed)
@@ -66,6 +67,7 @@ python3 calendar-gateway-setup.py
 ├── calendar-sync.py                 # Calendar sync script
 ├── calendar-gateway-setup.py        # Setup & test calendar connection
 ├── calendar-sync.sh                 # Bash-based calendar sync
+├── contacts-manager.py              # Create & update Google Contacts
 ├── credentials.example.json         # Template for service account
 ├── google-calendar-credentials.json # ⚠️ NEVER commit (in .gitignore)
 └── README.md                        # This file
@@ -147,6 +149,12 @@ python3 calendar-gateway-setup.py
 - Formats as readable message
 - Called via CRON at 9 PM Paris time
 - Sends to Telegram
+
+**contacts-manager.py** — *Google Contacts Management*
+- Create new contacts
+- Update existing contacts
+- List and search contacts
+- Syncs automatically to iPhone via Google Contacts app
 
 #### Examples & Templates
 
@@ -442,6 +450,26 @@ Separate files = clear ownership, easier debugging, safer updates.
 | "Token expired" | OAuth cache issue | Delete `.cache/gcal-token` and retry |
 | "9 PM reminder never fires" | CRON not running | Check OpenClaw cron service |
 | "Calendar sync is slow" | Too many events | Filter by date range in script |
+
+## Contacts Management
+
+Once the Google People API is enabled:
+
+```bash
+# Create a contact
+python3 contacts-manager.py create "Jean Dupont" jean@email.com "+33612345678"
+
+# Update a contact
+python3 contacts-manager.py update <contact_id> "Jean Dupont" jean.new@email.com
+
+# List all contacts
+python3 contacts-manager.py list
+
+# Search contacts
+python3 contacts-manager.py list 20
+```
+
+Contacts are automatically synced to your iPhone via Google Contacts app.
 
 ## Future Enhancements
 
